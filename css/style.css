@@ -61,3 +61,19 @@ label {
 button.button {
 	margin-right: 20px;
 }
+
+/*
+	Map container
+*/
+
+.container2 {
+	margin: 10px;
+	width: 900px;
+	height: 500px;
+}
+
+.map {
+	height: 400px;
+	width: 800px;
+}
+

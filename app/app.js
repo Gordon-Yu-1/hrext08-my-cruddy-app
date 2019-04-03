@@ -1,15 +1,20 @@
 var loadLocalStorage = function () {
-	var keys = Object.keys(localStorage)
-	var htmlString = '';
-	for (var i = 0; i < keys.length; i++) {
+	var keys = Object.keys(localStorage);//create an array keys in localStorage
+	var htmlString = '';// html string to be added to the local storage
+	for (var i = 0; i < keys.length; i++) { // check every key in localStorage
 		htmlString += `<tr><td>${keys[i]}</td><td>${localStorage[keys[i]]}</tr></tr>`;
+		// adds string in html element format for every key found in the localStorage obj
 	}
+    // Jquery $('tbody') retrieves tbody element.
+    // uses html(htmlString here) to set the child elements of tbody to the current htmlString.
 	$('tbody').html(htmlString)
 };
 
 var updateStatusLabel = function(message) {
 	$('#statusLabel').text('Status: ' + message);
 }
+
+
 
  //jQuery document ready initialization stuff
  ////button and form event handlers
@@ -71,7 +76,22 @@ $(document).ready(function () {
 		loadLocalStorage();
 	});	
 
+        
+
+			$(".container2").mapael({
+    	map : {
+        	name : "world_countries"
+    	}
+	});
+
+
 });
+
+
+
+
+
+
 /*
 
 
