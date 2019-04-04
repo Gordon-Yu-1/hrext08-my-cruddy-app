@@ -14,21 +14,26 @@ var updateStatusLabel = function(message) {
 	$('#statusLabel').text('Status: ' + message);
 }
 
+// gives a timesstamp to any completed assignment values
 var timeStamp = function (obj) {
     for (var key in obj) {
 	    if (obj[key] === 'complete') {
 		    obj[key] = 'assignment completed: ' + Date();
+		    //changes all the boxed not just the boxes with completed tasks
 	    }
 	}
 }
 
-
+      
 
  //jQuery document ready initialization stuff
  ////button and form event handlers
  // logic for determining action probably needs to go in the event handler
 $(document).ready(function () {
 	loadLocalStorage();
+
+
+
 
 	$('#btn-create').on('click', function(e) {
 		var key = $('#key').val();
@@ -56,7 +61,7 @@ $(document).ready(function () {
 
 		var existingValue = localStorage.getItem(key)
 
-   //      		if (value.toLowerCase() === 'complete') { // create a conditional to return complete with a time stamp
+            // create a conditional to return complete with a time stamp
 			// // console.log(localStorage[key])
 			// // localStorage[key] = 'assignment completed: ' + Date();
 			// $('#value').css('background-color', 'green' );//this access the value input box
@@ -64,7 +69,6 @@ $(document).ready(function () {
 			// 			// console.log(localStorage[key])
 
 
-		}
 
 		var keyExists = existingValue !== null;
 
@@ -79,7 +83,6 @@ $(document).ready(function () {
 			updateStatusLabel('Assignment doesn\'t exist, please use create assignment instead');
 		}
         
-        // iterates through the localStorage looking for values entered as complete
 
         timeStamp(localStorage);
 		loadLocalStorage();		
@@ -98,6 +101,7 @@ $(document).ready(function () {
 		} else {
 			updateStatusLabel('Assignment doesn\'t exist, nothing removed');
 		}
+
         timeStamp(localStorage);
 		loadLocalStorage();
 	});	
