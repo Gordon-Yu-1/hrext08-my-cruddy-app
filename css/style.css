@@ -66,15 +66,13 @@ button.button {
 	Map container
 */
 
-
-
-/*.container2 {
+.container2 {
 	margin: 10px;
 	width: 900px;
 	height: 500px;
-}*/
+}
 
-#worldmap {
+.map {
 	height: 400px;
 	width: 800px;
 }
