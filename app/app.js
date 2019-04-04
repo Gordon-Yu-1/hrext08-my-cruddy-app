@@ -78,11 +78,11 @@ $(document).ready(function () {
 
         
 
-			$(".container2").mapael({
-    	map : {
-        	name : "world_countries"
-    	}
-	});
+	// 		$(".container2").mapael({
+ //    	map : {
+ //        	name : "world_countries"
+ //    	}
+	// });
 
 
 });
