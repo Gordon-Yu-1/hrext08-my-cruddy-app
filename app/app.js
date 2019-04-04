@@ -14,6 +14,14 @@ var updateStatusLabel = function(message) {
 	$('#statusLabel').text('Status: ' + message);
 }
 
+var timeStamp = function (obj) {
+    for (var key in obj) {
+	    if (obj[key] === 'complete') {
+		    obj[key] = 'assignment completed: ' + Date();
+	    }
+	}
+}
+
 
 
  //jQuery document ready initialization stuff
@@ -35,7 +43,8 @@ $(document).ready(function () {
 			createEntry(key, value);
 			updateStatusLabel('Assignment: ' + key + ' -entered');
 		}
-
+        
+        timeStamp(localStorage);
 		loadLocalStorage();
 	});
 
@@ -47,12 +56,12 @@ $(document).ready(function () {
 
 		var existingValue = localStorage.getItem(key)
 
-        		if (value.toLowerCase() === 'complete') { // create a conditional to return complete with a time stamp
-			// console.log(localStorage[key])
-			// localStorage[key] = 'assignment completed: ' + Date();
-			console.log(value)
-			// $('#value').text('assignment completed: ');
-						// console.log(localStorage[key])
+   //      		if (value.toLowerCase() === 'complete') { // create a conditional to return complete with a time stamp
+			// // console.log(localStorage[key])
+			// // localStorage[key] = 'assignment completed: ' + Date();
+			// $('#value').css('background-color', 'green' );//this access the value input box
+			// // $('#value').text('assignment completed: ');
+			// 			// console.log(localStorage[key])
 
 
 		}
@@ -69,9 +78,10 @@ $(document).ready(function () {
 		} else {
 			updateStatusLabel('Assignment doesn\'t exist, please use create assignment instead');
 		}
+        
+        // iterates through the localStorage looking for values entered as complete
 
-
-
+        timeStamp(localStorage);
 		loadLocalStorage();		
 	});
 
@@ -88,11 +98,11 @@ $(document).ready(function () {
 		} else {
 			updateStatusLabel('Assignment doesn\'t exist, nothing removed');
 		}
-
+        timeStamp(localStorage);
 		loadLocalStorage();
 	});	
 
-        
+
 
 	// 		$(".container2").mapael({
  //    	map : {
