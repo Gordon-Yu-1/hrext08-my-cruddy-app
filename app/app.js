@@ -28,34 +28,50 @@ $(document).ready(function () {
 		var keyExists = localStorage.getItem(key) !== null;
 
 		if (keyExists) {
-			updateStatusLabel('key already exists, please use update button instead! :D');
+			updateStatusLabel('Assignement already exists, please update assignment instead!');
 		} else if (key === '') {
 			updateStatusLabel('invalid input!')
 		}else {
 			createEntry(key, value);
-			updateStatusLabel('key created - ' + key);
+			updateStatusLabel('Assignment: ' + key + ' -entered');
 		}
 
 		loadLocalStorage();
 	});
 
 	$('#btn-update').on('click', function(e) {
+
 		var key = $('#key').val();
+
 		var value = $('#value').val();
+
 		var existingValue = localStorage.getItem(key)
+
+        		if (value.toLowerCase() === 'complete') { // create a conditional to return complete with a time stamp
+			// console.log(localStorage[key])
+			// localStorage[key] = 'assignment completed: ' + Date();
+			console.log(value)
+			// $('#value').text('assignment completed: ');
+						// console.log(localStorage[key])
+
+
+		}
+
 		var keyExists = existingValue !== null;
 
 		if (value === existingValue) {
-			updateStatusLabel('key not updated - that value already exists silly! xD')
+			updateStatusLabel('Assignment not updated - that assignment already exists')
 		} else if (keyExists) {
 			updateEntry(key, value);
-			updateStatusLabel('key updated - ' + key);
+			updateStatusLabel('Assignment: ' + key + ' -updated');
 		} else if (key === '') {
 			updateStatusLabel('invalid input!')
 		} else {
-			updateStatusLabel('key doesn\'t exist, please use create button instead! :D');
-		}		
-		
+			updateStatusLabel('Assignment doesn\'t exist, please use create assignment instead');
+		}
+
+
+
 		loadLocalStorage();		
 	});
 
@@ -66,11 +82,11 @@ $(document).ready(function () {
 
 		if (keyExists) {
 			removeEntry(key);
-			updateStatusLabel('key removed - ' + key);
+			updateStatusLabel('Assignment: ' + key + ' -deleted');
 		} else if (key === '') {
 			updateStatusLabel('invalid input!')
 		} else {
-			updateStatusLabel('key doesn\'t exist, nothing removed. :|');
+			updateStatusLabel('Assignment doesn\'t exist, nothing removed');
 		}
 
 		loadLocalStorage();
