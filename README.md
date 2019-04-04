@@ -16,7 +16,23 @@ Create Read Update and Delete framework using JS
 - [ ] corgi gif
 - [ ] cowbell sound
 
-Read and looked up documentation for a library which creates maps. Didnt have any luck implementing it. Al though I feel I am close;
+New plan create a list of HR assignments (key) with due dates (value)
+
+you can add assignments and due dates 
+you can update to complete after assignment is done
+you can delete old assignments
+
+look into C3 to create a graph of some sort that will show assingments completed on time vs assingments due
+	-maybe using due date entered vs Date() using stringify and comparing?
+
+
+
+
+<!-- scrapping this whole idea, not sure if plug ins are acceptable since they are an already written piece of code
+     as oopose to a library. Going to focus on what I do know how to use and do. 
+ -->
+
+<!-- Read and looked up documentation for a library which creates maps. Didnt have any luck implementing it. Al though I feel I am close;
 
 Ideas for final project. 
 
@@ -54,3 +70,4 @@ Using CDN
 Include in your project page one of these tags:
 <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-mapael/2.2.0/js/jquery.mapael.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/jquery-mapael@2.2.0/js/jquery.mapael.min.js"></script> -->
+ -->
