@@ -76,13 +76,29 @@ $(document).ready(function () {
 		loadLocalStorage();
 	});	
 
-        
+        $('#worldmap').twism("create", {
+	map: "world",
+	border: "red",
+    individualCountrySettings: [{
+        name: "cn",
+    	color: "red"
+	}, {
+		name: "fr",
+		color: "blue"
+	}, {
+		name: "us",
+		color: "white"
+	}]
+}, function() {
+	alert("Callback!");
+});
 
-			$(".container2").mapael({
-    	map : {
-        	name : "world_countries"
-    	}
-	});
+
+	// 		$(".container2").mapael({
+ //    	map : {
+ //        	name : "world_countries"
+ //    	}
+	// });
 
 
 });

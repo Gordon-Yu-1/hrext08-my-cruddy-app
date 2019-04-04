@@ -22,7 +22,8 @@ Ideas for final project.
 
 Create a list of countries you have visited and ones you hope to visit. 
 	-use a library similar to C3 or even use C3 and create a graph of some sort instead of a map
-	-
+	- attempted to use mapael but had no luck getting it to work
+	- next will attempt to use twism
 
 Shade them different colors. 
 	-different shades for countries you want to visit and countries you have visited
@@ -44,11 +45,12 @@ Libraries
 	-Jquery
 	-Raphael
 	-Mapael
+	-twism
 
 Vission
 Open up a welcome page
 
 Using CDN
 Include in your project page one of these tags:
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-mapael/2.2.0/js/jquery.mapael.min.js"></script>
-<script src="//cdn.jsdelivr.net/npm/jquery-mapael@2.2.0/js/jquery.mapael.min.js"></script>
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-mapael/2.2.0/js/jquery.mapael.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/jquery-mapael@2.2.0/js/jquery.mapael.min.js"></script> -->
