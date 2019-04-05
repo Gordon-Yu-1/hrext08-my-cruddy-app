@@ -64,8 +64,6 @@ var ifPastDue = function (obj) {
  // logic for determining action probably needs to go in the event handler
 $(document).ready(function () {
 
-	// updateStatusCounter(localStorage);
-
 	 // timeStamp(localStorage);
 	 // ifPastDue(localStorage);
 	 loadLocalStorage();
@@ -92,11 +90,12 @@ $(document).ready(function () {
 			updateStatusLabel('Assignment: ' + key + ' -entered');
 		}
         
-
-        updateStatusCounter(localStorage);
+        
+        
         timeStamp(localStorage);
         ifPastDue(localStorage);
 		loadLocalStorage();
+		// updateStatusCounter(localStorage);
 
 
 	});
@@ -129,11 +128,12 @@ $(document).ready(function () {
 			updateStatusLabel('Assignment doesn\'t exist, please use create assignment instead');
 		}
         
-
-	    updateStatusCounter(localStorage);
+        console.log(statusCounter)
 	    ifPastDue(localStorage);
 		timeStamp(localStorage);
 		loadLocalStorage();	
+		// updateStatusCounter(localStorage);
+
 
 	});
 
@@ -150,10 +150,11 @@ $(document).ready(function () {
 			updateStatusLabel('Assignment doesn\'t exist, nothing removed');
 		}
 
-        updateStatusCounter(localStorage)
         ifPastDue(localStorage);
 		timeStamp(localStorage);
 		loadLocalStorage();
+		// updateStatusCounter(localStorage)
+
 
 	});	
 
@@ -222,7 +223,6 @@ var chart = c3.generate({
         title: "Assignment Status"
     }
 });
-
 
 
 
