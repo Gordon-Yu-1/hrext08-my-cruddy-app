@@ -9,6 +9,15 @@ advanced content
 state changing styling
 */
 
+body {
+	cursor: url(http://cur.cursors-4u.net/nature/nat-10/nat977.gif) ,auto;
+}
+
+h1 {
+  font-size: 40px;
+  font-family: copperplate;
+}
+
 /*
 	FLEXBOX CONTAINER
 	guide: https://css-tricks.com/snippets/css/a-guide-to-flexbox/

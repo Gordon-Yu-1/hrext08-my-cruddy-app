@@ -26,7 +26,7 @@ var chart = c3.generate({
         type : 'donut',
         onclick: function (d, i) { console.log("onclick", d, i); },
         onmouseover: function (d, i) { console.log("onmouseover", d, i); },
-        onmouseout: function (d, i) { console.log("onmouseout", d, i); },
+        // onmouseout: function (d, i) { console.log("onmouseout", d, i); },
         colors: {
         	'completed assignments': '#32CD32',
         	'past due assignments': 'crimson',
@@ -35,6 +35,7 @@ var chart = c3.generate({
     },
     donut: {
     	label: { 
+            threshold: 0.05,
     		format: function(value, ratio, id) {
     			if (value === 1) {
     			return value + ' assignment';

@@ -29,17 +29,19 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
+  <h1>Assignment Completion Tracker</h1>
+
 	<div id='chart'></div>
-	
+
 	<div class="container">
 		<form action="" method="" class="form">
 			<div class="form">
-				<label for="key">Create assignment: </label>
-				<input type="text" name="key" id="key" required>
+				<label for="key">Log assignment: </label>
+				<input type="text" name="key" id="key" placeholder="Name of assignment"required>
 			</div>
 			<div class="form">
-				<label for="value">Enter due date: </label>
-				<input type="text" name="value" id="value" required>
+				<label for="value">Enter due date/complete: </label>
+				<input type="text" name="value" id="value" placeholder="MM/DD/YYYY"required>
 			</div>
 			<div class="form">
 				<button class="button" id="btn-create" type="button">Create</button>
@@ -63,7 +65,7 @@
 			</tbody>
 		</table>
 	</div>
-	<div id="statusLabel">Status:</div>
+	<div id="statusLabel">Action:</div>
 
 	
 
