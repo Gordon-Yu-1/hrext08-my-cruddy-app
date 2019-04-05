@@ -93,7 +93,7 @@ $(document).ready(function () {
 		}
         
 
-        // updateStatusCounter(localStorage);
+        updateStatusCounter(localStorage);
         timeStamp(localStorage);
         ifPastDue(localStorage);
 		loadLocalStorage();
@@ -130,7 +130,7 @@ $(document).ready(function () {
 		}
         
 
-	    // updateStatusCounter(localStorage);
+	    updateStatusCounter(localStorage);
 	    ifPastDue(localStorage);
 		timeStamp(localStorage);
 		loadLocalStorage();	
@@ -150,7 +150,7 @@ $(document).ready(function () {
 			updateStatusLabel('Assignment doesn\'t exist, nothing removed');
 		}
 
-        // updateStatusCounter(localStorage)
+        updateStatusCounter(localStorage)
         ifPastDue(localStorage);
 		timeStamp(localStorage);
 		loadLocalStorage();
@@ -193,11 +193,12 @@ var updateStatusCounter = function(obj) {
 }
 
 
- 
+updateStatusCounter(localStorage);
 
 var chart = c3.generate({
     data: {
         columns: statusCounter,
+
         type : 'donut',
         onclick: function (d, i) { console.log("onclick", d, i); },
         onmouseover: function (d, i) { console.log("onmouseover", d, i); },
