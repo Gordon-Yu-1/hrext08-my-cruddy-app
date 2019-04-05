@@ -17,12 +17,44 @@ var updateStatusLabel = function(message) {
 // gives a timesstamp to any completed assignment values
 var timeStamp = function (obj) {
     for (var key in obj) {
-	    if (obj[key] === 'complete') {
-		    obj[key] = 'assignment completed: ' + Date();
+		var stamp = new Date();
+		var month = stamp.getMonth();
+		var day = stamp.getDate();
+		var year = stamp.getFullYear();
+		var date = `${month}/${day}/${year}`;
+    
+        if (obj[key] === 'complete') {
+          obj[key] =  `Assignment completed on: ${stamp}`;
 		    //changes all the boxed not just the boxes with completed tasks
-	    }
+	    } 
 	}
 }
+
+// example of today: 04/04/2019
+// example of dueDate: 03/20/2019
+// create a way of checking if assignemtn is passed due
+var ifPastDue = function(obj) {
+	for (var key in obj) {
+		// access to different parts of a time stamp
+	    var stamp = new Date();
+		var month = stamp.getMonth();
+		var day = stamp.getDate();
+		var year = stamp.getFullYear();
+
+		if(obj[key] !== 'A') {
+
+		    var dueMonth = obj[key][0] + obj[key][1];
+		    var dueDay = obj[key][3] + obj[key][4];
+		    var dueYear = obj[key][6] + obj[key][7] + obj[key][8] + obj[key][9];
+
+		    if (Number(dueYear) < year || Number(dueMonth) < month || Number(dueDay) < day) {
+		  		obj[key] = 'STEP YA GAME UP. THIS IS PAST DUE';
+		    }
+		}
+	}
+}
+
+
 
       
 
@@ -30,10 +62,8 @@ var timeStamp = function (obj) {
  ////button and form event handlers
  // logic for determining action probably needs to go in the event handler
 $(document).ready(function () {
+	ifPastDue(localStorage);
 	loadLocalStorage();
-
-
-
 
 	$('#btn-create').on('click', function(e) {
 		var key = $('#key').val();
@@ -50,6 +80,7 @@ $(document).ready(function () {
 		}
         
         timeStamp(localStorage);
+        ifPastDue(localStorage);
 		loadLocalStorage();
 	});
 
@@ -83,8 +114,8 @@ $(document).ready(function () {
 			updateStatusLabel('Assignment doesn\'t exist, please use create assignment instead');
 		}
         
-
-        timeStamp(localStorage);
+        ifPastDue(localStorage);
+		timeStamp(localStorage);
 		loadLocalStorage();		
 	});
 
@@ -102,6 +133,7 @@ $(document).ready(function () {
 			updateStatusLabel('Assignment doesn\'t exist, nothing removed');
 		}
 
+	    ifPastDue(localStorage);
         timeStamp(localStorage);
 		loadLocalStorage();
 	});	
@@ -122,11 +154,15 @@ $(document).ready(function () {
 
 
 
+
+
 /*
 
 
 
-When an input element is given a name, that name becomes a property of the owning form element's HTMLFormElement.elements property. That means if you have an input whose name is set to guest and another whose name is hat-size, the following code can be used:
+When an input element is given a name, that name becomes a property of the owning 
+form element's HTMLFormElement.elements property. That means if you have an input whose name
+ is set to guest and another whose name is hat-size, the following code can be used:
 
 let form = document.querySelector("form");
 let guestName = form.elements.guest;
