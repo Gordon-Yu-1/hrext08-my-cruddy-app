@@ -68,6 +68,16 @@ button.button {
 }
 
 /*
+	CHART
+*/
+
+#chart {
+	width: 900px;
+	height: 400px;
+}
+
+
+/*
 	Map container
 */
 

@@ -10,7 +10,7 @@ var loadLocalStorage = function () {
 	$('tbody').html(htmlString)
 };
 
-var updateStatusLabel = function(message) {
+var updateStatusLabel = function (message) {
 	$('#statusLabel').text('Status: ' + message);
 }
 
@@ -25,15 +25,15 @@ var timeStamp = function (obj) {
     
         if (obj[key] === 'complete') {
           obj[key] =  `Assignment completed on: ${stamp}`;
+          // satatusCounter[0][1]++;
 		    //changes all the boxed not just the boxes with completed tasks
 	    } 
 	}
 }
 
-// example of today: 04/04/2019
-// example of dueDate: 03/20/2019
 // create a way of checking if assignemtn is passed due
-var ifPastDue = function(obj) {
+// if it is change the value 
+var ifPastDue = function (obj) {
 	for (var key in obj) {
 		// access to different parts of a time stamp
 	    var stamp = new Date();
@@ -49,6 +49,7 @@ var ifPastDue = function(obj) {
 
 		    if (Number(dueYear) < year || Number(dueMonth) < month || Number(dueDay) < day) {
 		  		obj[key] = 'STEP YA GAME UP. THIS IS PAST DUE';
+		  		// satatusCounter[1][1]++;
 		    }
 		}
 	}
@@ -62,16 +63,28 @@ var ifPastDue = function(obj) {
  ////button and form event handlers
  // logic for determining action probably needs to go in the event handler
 $(document).ready(function () {
-	ifPastDue(localStorage);
-	loadLocalStorage();
+
+	// updateStatusCounter(localStorage);
+
+	 // timeStamp(localStorage);
+	 // ifPastDue(localStorage);
+	 loadLocalStorage();
 
 	$('#btn-create').on('click', function(e) {
 		var key = $('#key').val();
 		var value = $('#value').val();
 		var keyExists = localStorage.getItem(key) !== null;
 
+		//was going to create my statusCounter {} off the results but it might be best to use up todate 
+		// data from localStorage;
+		// if (value === 'complete') {
+		// 	satatusCounter['complete']++;
+		// } else {
+		// 	statusCounter['toDo']++;
+		// }
+
 		if (keyExists) {
-			updateStatusLabel('Assignement already exists, please update assignment instead!');
+			updateStatusLabel('Assignment already exists, please update assignment instead!');
 		} else if (key === '') {
 			updateStatusLabel('invalid input!')
 		}else {
@@ -79,18 +92,20 @@ $(document).ready(function () {
 			updateStatusLabel('Assignment: ' + key + ' -entered');
 		}
         
+
+        // updateStatusCounter(localStorage);
         timeStamp(localStorage);
         ifPastDue(localStorage);
 		loadLocalStorage();
+
+
 	});
 
 	$('#btn-update').on('click', function(e) {
-
 		var key = $('#key').val();
-
 		var value = $('#value').val();
-
 		var existingValue = localStorage.getItem(key)
+
 
             // create a conditional to return complete with a time stamp
 			// // console.log(localStorage[key])
@@ -114,16 +129,18 @@ $(document).ready(function () {
 			updateStatusLabel('Assignment doesn\'t exist, please use create assignment instead');
 		}
         
-        ifPastDue(localStorage);
+
+	    // updateStatusCounter(localStorage);
+	    ifPastDue(localStorage);
 		timeStamp(localStorage);
-		loadLocalStorage();		
+		loadLocalStorage();	
+
 	});
 
 	$('#btn-delete').on('click', function(e) {
 		var key = $('#key').val();
 		var value = $('#value').val();
 		var keyExists = localStorage.getItem(key) !== null;
-
 		if (keyExists) {
 			removeEntry(key);
 			updateStatusLabel('Assignment: ' + key + ' -deleted');
@@ -133,9 +150,11 @@ $(document).ready(function () {
 			updateStatusLabel('Assignment doesn\'t exist, nothing removed');
 		}
 
-	    ifPastDue(localStorage);
-        timeStamp(localStorage);
+        // updateStatusCounter(localStorage)
+        ifPastDue(localStorage);
+		timeStamp(localStorage);
 		loadLocalStorage();
+
 	});	
 
 
@@ -145,13 +164,63 @@ $(document).ready(function () {
  //        	name : "world_countries"
  //    	}
 	// });
+	// updateStatusCounter(localStorage);
+   
+	// updateStatusCounter(localStorage);
 
+	// timeStamp(localStorage);
+	// ifPastDue(localStorage);
+	// loadLocalStorage();
 
 });
 
+var statusCounter = [
+	['completed assignments', 0],
+	['past due assignments', 0],
+	['to do assignments', 0]
+];
+
+var updateStatusCounter = function(obj) {
+	for (var key in obj) {
+		if (obj[key][0] === 'S') {
+			statusCounter[1][1]++;
+		} else if (obj[key][0] === 'A') {
+			statusCounter[0][1]++;		
+		} else if (typeof obj[key] === 'string' && obj[key][0] !== 'A' && obj[key][0] !== 'S') {
+			statusCounter[2][1]++;
+		}
+	}
+}
 
 
+ 
 
+var chart = c3.generate({
+    data: {
+        columns: statusCounter,
+        type : 'donut',
+        onclick: function (d, i) { console.log("onclick", d, i); },
+        onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+        onmouseout: function (d, i) { console.log("onmouseout", d, i); },
+        colors: {
+        	'completed assignments': '#32CD32',
+        	'past due assignments': 'crimson',
+        	'to do assignments': 'orange'
+        }
+    },
+    donut: {
+    	label: { 
+    		format: function(value, ratio, id) {
+    			if (value === 1) {
+    			return value + ' assignment';
+    		} else {
+    			return value + ' assignments'
+    		}
+    		}
+        },
+        title: "Assignment Status"
+    }
+});
 
 
 
